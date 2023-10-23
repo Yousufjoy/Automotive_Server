@@ -28,10 +28,19 @@ async function run() {
 
     const productCollection = client.db("autoConnectDB").collection("product");
 
+    // 1) Create
     app.post("/products", async (req, res) => {
       const newData = req.body;
       console.log(newData);
       const result = await productCollection.insertOne(newData);
+      res.send(result);
+    });
+
+    // 2) Read
+
+    app.get("/products", async (req, res) => {
+      const cursor = productCollection.find(); // cursor mane ekta pointer set kortesi oi collection er moddhe
+      const result = await cursor.toArray(); // joto gula item ase sob diye dibe
       res.send(result);
     });
 
