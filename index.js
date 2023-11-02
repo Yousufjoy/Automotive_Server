@@ -28,6 +28,9 @@ async function run() {
 
     const productCollection = client.db("autoConnectDB").collection("product");
     const cartCollection = client.db("autoConnectDB").collection("cart");
+    const brandNameCollection = client
+      .db("autoConnectDB")
+      .collection("brandName");
 
     // 1) Create / Post for products
     app.post("/products", async (req, res) => {
@@ -49,6 +52,12 @@ async function run() {
 
     app.get("/cart", async (req, res) => {
       const cursor = cartCollection.find(); // cursor mane ekta pointer set kortesi oi collection er moddhe
+      const result = await cursor.toArray(); // joto gula item ase sob diye dibe
+      res.send(result);
+    });
+
+    app.get("/brandName", async (req, res) => {
+      const cursor = brandNameCollection.find(); // cursor mane ekta pointer set kortesi oi collection er moddhe
       const result = await cursor.toArray(); // joto gula item ase sob diye dibe
       res.send(result);
     });
