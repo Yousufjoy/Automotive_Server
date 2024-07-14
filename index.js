@@ -75,25 +75,25 @@ async function run() {
 
     // 1.1) Update product
 
-    app.put("/products/:id", async (req, res) => {
-      const id = req.params.id;
-      const filter = { _id: new ObjectId(id) };
-      const options = { upsert: true };
-      const updatedCar = req.body;
-      const car = {
-        $set: {
-          name: updatedCar.name,
-          image: updatedCar.image,
-          brandName: updatedCar.brandName,
-          type: updatedCar.type,
-          price: updatedCar.price,
-          description: updatedCar.description,
-          rating: updatedCar.rating,
-        },
-      };
-      const result = await productCollection.updateOne(filter, car, options);
-      res.send(result);
-    });
+    // app.put("/products/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const filter = { _id: new ObjectId(id) };
+    //   const options = { upsert: true };
+    //   const updatedCar = req.body;
+    //   const car = {
+    //     $set: {
+    //       name: updatedCar.name,
+    //       image: updatedCar.image,
+    //       brandName: updatedCar.brandName,
+    //       type: updatedCar.type,
+    //       price: updatedCar.price,
+    //       description: updatedCar.description,
+    //       rating: updatedCar.rating,
+    //     },
+    //   };
+    //   const result = await productCollection.updateOne(filter, car, options);
+    //   res.send(result);
+    // });
 
     // 2) Read
 
